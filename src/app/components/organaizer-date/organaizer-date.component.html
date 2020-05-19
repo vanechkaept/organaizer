@@ -3,7 +3,7 @@
     <i class="material-icons" (click)='go(-1)' >arrow_left</i>
 
     <span>
-      {{this.dateService.date | async  }}
+      {{this.dateService.date | async | moment_pipe}}
     </span>
 
     <i class="material-icons" (click)='go(1)' >arrow_right</i>

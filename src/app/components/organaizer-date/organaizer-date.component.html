@@ -1,12 +1,17 @@
 
-  <div class='sub__big__text'>
-    <i class="material-icons" (click)='go(-1)' >arrow_left</i>
+  <div class='organaizer_date'>
 
+    <span class='after_before_now' (click)='go(-1)'>
+      {{this.mounthBeforeNow | moment_pipe}}
+    </span>
     <span>
       {{this.dateService.date | async | moment_pipe}}
     </span>
+    <span class='after_before_now' (click)='go(1)'>
+      {{this.mounthAfterNow| moment_pipe}}
+    </span>
+    <i class="material-icons" (click)='showThisMonth()'>location_on</i>
 
-    <i class="material-icons" (click)='go(1)' >arrow_right</i>
 
   </div>
 

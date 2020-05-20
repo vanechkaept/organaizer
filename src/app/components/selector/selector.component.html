@@ -7,7 +7,7 @@
     style='transition: .4s;'
     [class.negative__padding]='this.openedSidenav !== false'>
       <h5 class='subbig' style='margin-top: 0;'>
-        Дата: {{this.dateService.date | async | moment_pipe:'DD.MM.YYYY'}}
+        Дата: {{this.dateService.day  | moment_pipe:'DD.MM.YYYY'}}
       </h5>
 
       <div class='grid'>
@@ -38,7 +38,7 @@
               </mat-expansion-panel>
             </ng-container>
             <ng-template #noTasks>
-              <p class='no__tasks'> Пока тут нет задач ...</p>
+              <p class='no__tasks'> <em>Пока тут нет задач ...</em> </p>
             </ng-template>
           </mat-accordion>
         </div>

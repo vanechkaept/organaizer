@@ -24,9 +24,7 @@ export class SelectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.openedSidenav = false;
-
 
     this.dateService.date.pipe(
       switchMap(value => this.taskServise.load(value) )
@@ -36,6 +34,7 @@ export class SelectorComponent implements OnInit {
         console.log(this.tasks);
       }
     );
+
     this.form = new FormGroup({
       title: new FormControl('', Validators.required),
       text: new FormControl (''),

@@ -1,9 +1,20 @@
 
+<div class='calendar_block'>
 
-  <mat-grid-list cols="7" rowHeight="100px" style="margin: 10px auto 30px auto" >
+  <mat-grid-list cols="7" rowHeight="40px" class='dayOfWheek'>
+    <mat-grid-tile> Пн </mat-grid-tile>
+    <mat-grid-tile> Вт </mat-grid-tile>
+    <mat-grid-tile> Ср </mat-grid-tile>
+    <mat-grid-tile> Чт </mat-grid-tile>
+    <mat-grid-tile> Пт </mat-grid-tile>
+    <mat-grid-tile> Сб </mat-grid-tile>
+    <mat-grid-tile> Вс </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="7" rowHeight="80px" style="margin: 0 auto 30px auto" >
     <mat-grid-tile
     class='calendar__block'
-    *ngFor="let day of cl"
+    *ngFor="let day of days"
     [class.now]="day.now === true"
     [class.selected]='day.selected === true'
     [class.disabled]='day.disabled === true'
@@ -11,6 +22,18 @@
         {{day.value | moment_pipe: 'D'}}
     </mat-grid-tile>
   </mat-grid-list>
+
+
+  <div class="arrow_left" (click)='go(-1)'>
+    <i class="material-icons">keyboard_arrow_left</i>
+  </div>
+  <div class="arrow_right" (click)='go(1)'>
+    <i class="material-icons">keyboard_arrow_right</i>
+  </div>
+</div>
+
+
+
 
 
 

@@ -26,6 +26,12 @@ $organaizer-theme: mat-light-theme($organaizer-primary, $organaizer-accent, $org
 // that you are using.
 @include angular-material-theme($organaizer-theme);
 
+:root{
+  --primary-color: #dc3545;
+  --dark-color: #333333;
+  --light-color: #f4f4f4;
+}
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }

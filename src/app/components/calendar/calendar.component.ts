@@ -82,7 +82,7 @@ export class CalendarComponent implements OnInit {
     });
     day.selected = true;
 
-    console.log('Day value : ', day)
+    console.log('Day value : ', day);
 
     this.dateService.setDay(day.value.clone());
     this.dateService.changeDate(day.value);

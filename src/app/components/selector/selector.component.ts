@@ -14,7 +14,7 @@ export class SelectorComponent implements OnInit {
 
   day: any;
   form: FormGroup;
-  openedSidenav: boolean;
+  openForm = false;
 
   tasks: Task[];
 
@@ -24,7 +24,6 @@ export class SelectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.openedSidenav = false;
 
     this.dateService.date.pipe(
       switchMap(value => this.taskServise.load(value) )

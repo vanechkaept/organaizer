@@ -1,4 +1,4 @@
-
+<!--
 
 
 <div class="container">
@@ -6,7 +6,7 @@
     <div class='sidenav__content'
     style='transition: .4s;'
     [class.negative__padding]='this.openedSidenav !== false'>
-      <h5 class='subbig' style='margin-top: 0;'>
+      <h5 class='selector_title' style='margin-top: 0;'>
         Дата: {{this.dateService.day  | moment_pipe:'DD.MM.YYYY'}}
       </h5>
 
@@ -62,7 +62,9 @@
     [(opened)]='openedSidenav'
     (closed)='openedSidenav===false'
     (opened)='openedSidenav===true'>
-      <h5 class='subbig' style='padding: 10px 0 0 15px;'> Создайте задачу: </h5>
+      <h5 class='selector_title' style='padding: 0 0 10px 15px;'>
+        Создайте задачу:
+      </h5>
       <form
       style='padding:0; margin:0 '
       [formGroup]='form'
@@ -117,6 +119,136 @@
   </mat-drawer-container>
 
 </div>
+
+
+ -->
+
+
+ <!-- <div>
+  <mat-grid-list  cols='9' class='selector_block'>
+    <mat-grid-tile colspan='4' class='selector_block_event'>
+      <div>
+        gg
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class='selector_block_button'>
+      <div>
+        <button mat-raised-button
+        class='btn__toggle ' >
+        {{this.openedSidenav === false? '+' : '&#9658;'}}
+      </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan='4' class='selector_block_create'>
+      <div>
+        gg
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+ </div> -->
+
+
+
+ <div class="grid">
+   <div class='selector_block'>
+      <h5 class='selector_title'>
+        Дата: {{this.dateService.day  | moment_pipe:'DD.MM.YYYY'}}
+      </h5>
+      <ng-container *ngIf='tasks?.length > 0; else noTasks'>
+          <div class='event_block'
+          [class.preferably_info]='task.important ==="2"'
+          [class.important_info]='task.important ==="1"'
+          *ngFor='let task of this.tasks; let i = index'>
+            <div class="task_title">
+                {{task.title}}
+            </div>
+            <div class="task_text"
+            *ngIf='!this.openForm'
+            [class.text_empty]='!task.text'>
+                {{task.text || 'Без описания'}}
+            </div>
+            <div class="task_delete">
+              <button mat-icon-button
+              class='btn_delete'
+              (click)="deleteMemo(task)">
+                  <mat-icon> close </mat-icon>
+              </button>
+            </div>
+          </div>
+      </ng-container>
+
+      <ng-template #noTasks>
+        <p class='no_tasks'> <em>Пока тут нет задач ...</em> </p>
+      </ng-template>
+
+   </div>
+
+   <div class='selector_block_button'>
+      <button mat-raised-button
+      class='btn__toggle'
+      (click)='this.openForm = !this.openForm'
+      [class.close]='this.openForm !== false'>
+        {{this.openForm === false ? '+' : '&#9658;'}}
+      </button>
+
+   </div>
+
+   <div class='selector_block_create'
+   [style.marginRight]="!this.openForm ? '-545px' : '0px' ">
+      <h5 class='selector_title'>
+        Создайте задачу:
+      </h5>
+      <form
+        style='padding:0; margin:0 '
+        [formGroup]='form'
+        (ngSubmit)='submit()' >
+          <div class="row" style='padding: 0; margin: 0;'>
+            <div class="col-5">
+              <mat-form-field
+              appearance="fill"
+              style='width: 100%; '>
+                <mat-label>Название события </mat-label>
+                <input formControlName='title' matInput >
+                <mat-error *ngIf="this.form.controls.title.errors && this.form.controls.title.touched">
+                  Поле не может быть пустым
+                </mat-error>
+              </mat-form-field>
+              <mat-radio-group
+              formControlName='important'>
+                <mat-radio-button value=1>
+                  Важно
+                </mat-radio-button>
+                <br>
+                <mat-radio-button value=2>
+                  Желательно
+                </mat-radio-button>
+                <br>
+                <mat-radio-button value=3>
+                  На фоне
+                </mat-radio-button>
+              </mat-radio-group>
+
+            </div>
+            <div class="col-7">
+              <mat-form-field appearance="fill" style='width: 100%'>
+                <mat-label>Описание</mat-label>
+                <textarea formControlName='text' matInput cdkTextareaAutosize style='min-height: 75px;'></textarea>
+              </mat-form-field>
+
+              <div class='block__right'>
+                <button mat-button class='second__btn' (click)='resetForm()'>Очистить</button>
+                <button mat-raised-button class='first__btn' >Добавить</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+   </div>
+
+ </div>
+
+
 
 
 
